@@ -1,13 +1,16 @@
 package com.github.karynaiko.model;
 
+import org.hibernate.annotations.BatchSize;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
 @NamedQueries({
         @NamedQuery(name = "DELETE", query = "DELETE FROM User u WHERE u.id=:id"),
-        @NamedQuery(name = "GET_BY_EMAIL", query = "SELECT DISTINCT u FROM User u  WHERE u.email=?1"),
+        @NamedQuery(name = "GET_BY_EMAIL", query = "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email=?1"),
 })
 
 public class User {
@@ -29,6 +32,12 @@ public class User {
 
     @Column(name = "registered", columnDefinition = "timestamp default now()")
     private Date registered = new Date();
+
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    @ElementCollection(fetch = FetchType.EAGER)
+    @BatchSize(size = 200)
+    private Set<Role> roles;
 
     public User() {
     }
@@ -79,5 +88,13 @@ public class User {
 
     public void setRegistered(Date registered) {
         this.registered = registered;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
