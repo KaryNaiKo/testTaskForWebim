@@ -43,4 +43,8 @@
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp"/>
 
+    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" id="converter"/>
+    <bean class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters" ref="converter"/>
+    </bean>
 </beans>

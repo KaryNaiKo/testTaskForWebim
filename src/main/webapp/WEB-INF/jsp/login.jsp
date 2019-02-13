@@ -12,10 +12,9 @@
     <div class="container">
         <sec:authorize access="isAnonymous()">
             <div class="pt-4">
-                <a class="btn btn-lg btn-success" href="#"></a>
-                <button type="submit" class="btn btn-lg btn-primary">
-                    Войти через Вк
-                </button>
+                <a href="oauth/vk/authorize" role="button" class="btn btn-block btn-social btn-vk">
+                    <span class="fa fa-vk"></span>Sign in with VK
+                </a>
             </div>
         </sec:authorize>
         <div class="lead py-4">Стек технологий: <br><a href="http://projects.spring.io/spring-security/">Spring

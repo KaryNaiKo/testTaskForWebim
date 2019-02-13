@@ -11,11 +11,12 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "DELETE", query = "DELETE FROM User u WHERE u.id=:id"),
         @NamedQuery(name = "GET_BY_EMAIL", query = "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email=?1"),
+        @NamedQuery(name = "GET_BY_ID", query = "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles WHERE u.id=?1"),
 })
 
 public class User {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "user_id", nullable = false)
     private int id;
 
     @Column(name = "first_name", nullable = false)
@@ -33,6 +34,7 @@ public class User {
     @Column(name = "registered", columnDefinition = "timestamp default now()")
     private Date registered = new Date();
 
+    @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)

@@ -14,7 +14,7 @@ public class RootController{
 
     @GetMapping("/friends")
     public String users() {
-        return "users";
+        return "friends";
     }
 
     @GetMapping(value = "/login")

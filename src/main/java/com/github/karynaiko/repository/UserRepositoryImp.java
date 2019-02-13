@@ -46,4 +46,10 @@ public class UserRepositoryImp implements UserRepository{
         List<User> users = em.createNamedQuery("GET_BY_EMAIL", User.class).setParameter(1, email).getResultList();
         return DataAccessUtils.singleResult(users);
     }
+
+    @Override
+    public User getById(int id) {
+        List<User> users = em.createNamedQuery("GET_BY_ID", User.class).setParameter(1, id).getResultList();
+        return DataAccessUtils.singleResult(users);
+    }
 }

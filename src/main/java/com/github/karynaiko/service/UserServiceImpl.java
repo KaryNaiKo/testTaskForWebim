@@ -41,10 +41,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public AuthorizedUser loadUserByUsername(String email) throws UsernameNotFoundException {
-        User u = repository.getByEmail(email.toLowerCase());
-        if (u == null) {
-            throw new UsernameNotFoundException("User " + email + " is not found");
+    public AuthorizedUser loadUserByUsername(String id) throws UsernameNotFoundException {
+        User u = null;
+        try {
+            int userId = Integer.parseInt(id);
+            u = repository.getById(userId);
+            if (u == null) {
+                throw new UsernameNotFoundException("User " + id + " is not found");
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
         return new AuthorizedUser(u);
     }
