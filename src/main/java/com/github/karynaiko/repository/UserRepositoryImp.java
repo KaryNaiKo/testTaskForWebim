@@ -37,11 +37,6 @@ public class UserRepositoryImp implements UserRepository{
     }
 
     @Override
-    public User get(int id) {
-        return em.find(User.class, id);
-    }
-
-    @Override
     public User getByEmail(String email) {
         List<User> users = em.createNamedQuery("GET_BY_EMAIL", User.class).setParameter(1, email).getResultList();
         return DataAccessUtils.singleResult(users);

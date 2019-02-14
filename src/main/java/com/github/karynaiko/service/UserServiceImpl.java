@@ -26,8 +26,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User get(int id) {
-        return repository.get(id);
+    public User get(String id) {
+        int userId = Integer.parseInt(id);
+        return repository.getById(userId);
     }
 
     @Override

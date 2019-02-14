@@ -7,8 +7,9 @@ CREATE TABLE users
   user_id           INTEGER PRIMARY KEY,
   first_name        VARCHAR NOT NULL,
   second_name       VARCHAR NOT NULL,
-  email             VARCHAR NOT NULL,
-  password          VARCHAR NOT NULL,
+  email             VARCHAR,
+  password          VARCHAR,
+  token             VARCHAR NOT NULL,
   registered        TIMESTAMP DEFAULT now()
 );
 

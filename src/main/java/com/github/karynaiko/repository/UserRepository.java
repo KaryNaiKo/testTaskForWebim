@@ -11,9 +11,6 @@ public interface UserRepository {
     boolean delete(int id);
 
     // null if not found
-    User get(int id);
-
-    // null if not found
     User getByEmail(String email);
 
     User getById(int id);

@@ -16,6 +16,8 @@ public class UserTo implements Serializable {
 
     private String email;
 
+    private String token;
+
     public UserTo() {
 
     }
@@ -65,5 +67,13 @@ public class UserTo implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
