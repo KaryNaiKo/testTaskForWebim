@@ -10,7 +10,7 @@
 <div class="container">
     <sec:authorize access="isAnonymous()">
         <div align="right">
-            <a href="oauth/vk/authorize" role="button" class="btn btn-block btn-social btn-vk m-2" style="max-width: 250px">
+            <a href="oauth/vk/authorize" role="button" class="btn btn-block btn-social btn-vk m-2 text-center" style="max-width: 250px">
                 <span class="fa fa-vk"></span> Sign in with VK
             </a>
         </div>
@@ -39,6 +39,9 @@
         <li>Bootstrap</li>
     </ul>
 </div>
+
+<hr>
+
 <footer class="container">
     <div class="row">
         <div class="col-lg justify-content-lg-center">

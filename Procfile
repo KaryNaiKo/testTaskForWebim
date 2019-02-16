@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -classpath target/dependency webapp.runner.launch.Main --port $PORT target/*.war
