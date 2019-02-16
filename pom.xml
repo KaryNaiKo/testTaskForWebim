@@ -40,6 +40,7 @@
         <!--webjars-->
         <webjars-bootstrap.version>4.1.3</webjars-bootstrap.version>
         <webjars-jquery.version>3.3.1-1</webjars-jquery.version>
+
     </properties>
 
     <build>
@@ -194,6 +195,16 @@
                     <artifactId>jquery</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+            <version>4.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap-social</artifactId>
+            <version>5.0.0</version>
         </dependency>
 
         <!--JSON-->

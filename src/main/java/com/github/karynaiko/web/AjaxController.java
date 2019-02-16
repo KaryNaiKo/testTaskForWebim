@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -26,9 +25,10 @@ public class AjaxController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/ajax/friends/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JsonNode> getFriends(@PathVariable("userId") String userId) {
-        User user = userService.get(userId);
+    @GetMapping(value = "/ajax/friends", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<JsonNode> getFriends() {
+        int userId = SecurityUtil.authUserId();
+        User user = userService.get(Integer.toString(userId));
         UriComponentsBuilder builder = fromHttpUrl(METHOD_URL + "friends.search")
                 .queryParam("count", "5")
                 .queryParam("fields", "photo_200")
@@ -37,7 +37,6 @@ public class AjaxController {
 
         ResponseEntity node = template.getForEntity(builder.build().encode().toUri(), JsonNode.class);
         JsonNode json = (JsonNode) node.getBody();
-        new ResponseEntity<>(json, HttpStatus.OK);
 
         return new ResponseEntity<>(json, HttpStatus.OK);
     }

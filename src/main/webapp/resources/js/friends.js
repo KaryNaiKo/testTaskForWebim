@@ -1,10 +1,10 @@
-send('19105970', function (data) {
+send(function (data) {
     render(data.response);
 });
 
-function send(id, callback) {
+function send(callback) {
     $.ajax({
-        url: "/ajax/friends/" + id,
+        url: "/ajax/friends",
         method: "GET",
         dataType: "json",
         success: callback
